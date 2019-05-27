@@ -29,7 +29,6 @@ def get_tweet_from_keywords(keywords,
                             limit = 500,
                             outputtweet = "keywords/json",
                             outputmedia = "keywords/media"):
-
     api = common.twitthon_authentication.get_api()
     common.twitthon_acquisition.get_tweet_from_keywords(api, keywords, limit, outputtweet, outputmedia)
 
@@ -45,6 +44,11 @@ if __name__ == '__main__':
 
     if len(accounts) > 0:
         # Get the first account, then get tweets
-        user = accounts[0]
-        get_user_tweet(user)
+        account = accounts[0]
+
+        print ("### Récupération des tweets du compte : "+str(account))
+        get_user_tweet(account,0)
+        print ("### Récupération des tweets mentionnant le compte : "+str(account))
+        get_tweet_from_keywords(account)
+        print ("### Récupération des tweets mentionnant l'utilisateur : "+str(user))
         get_tweet_from_keywords(user)
