@@ -1,54 +1,32 @@
 import sys
-import common.twitthon_authentication
-import common.twitthon_acquisition
+import logging
+import src.consumers as consumers
+from src import variables
+
+debug_level = variables.debug_level
+
+if debug_level == "DEBUG":
+    logging.basicConfig(level=logging.DEBUG)
+elif debug_level == "INFO":
+    logging.basicConfig(level=logging.INFO)
+elif debug_level == "WARNING":
+    logging.basicConfig(level=logging.WARNING)
+elif debug_level == "ERROR":
+    logging.basicConfig(level=logging.ERROR)
+elif debug_level == "CRITICAL":
+    logging.basicConfig(level=logging.CRITICAL)
 
 def usage():
     print("Usage:")
     print("python {} <username>".format(sys.argv[0]))
 
-def get_accounts_from_user(user):
-    api = common.twitthon_authentication.get_api()
-    results = api.search_users(q=user)
 
-    accounts = []
-    for result in results:
-        accounts.append(result._json['screen_name'])
-
-    print("Compte(s) trouvé(s) pour '"+str(user)+"' : "+str(accounts))
-    return accounts
-
-def get_user_tweet(user,
-                   limit=500,
-                   outputtweet = "timeline/json",
-                   outputmedia = "timeline/media"):
-
-    api = common.twitthon_authentication.get_api()
-    common.twitthon_acquisition.get_user_tweet(api, user, limit, outputtweet, outputmedia)
-
-def get_tweet_from_keywords(keywords,
-                            limit = 500,
-                            outputtweet = "keywords/json",
-                            outputmedia = "keywords/media"):
-    api = common.twitthon_authentication.get_api()
-    common.twitthon_acquisition.get_tweet_from_keywords(api, keywords, limit, outputtweet, outputmedia)
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        usage()
-        sys.exit(1)
+    tasks = [
+        consumers.Consumer(variables.kafka_endpoint,variables.topic_in)
+    ]
+    #lancement du thread de consomation du topic
+    for t in tasks:
+        t.start()
 
-    user = sys.argv[1]
-
-    accounts = get_accounts_from_user(user)
-    # TODO: boucler sur les comptes twitter
-
-    if len(accounts) > 0:
-        # Get the first account, then get tweets
-        account = accounts[0]
-
-        print ("### Récupération des tweets du compte : "+str(account))
-        get_user_tweet(account,0)
-        print ("### Récupération des tweets mentionnant le compte : "+str(account))
-        get_tweet_from_keywords(account)
-        print ("### Récupération des tweets mentionnant l'utilisateur : "+str(user))
-        get_tweet_from_keywords(user)
