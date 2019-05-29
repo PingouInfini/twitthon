@@ -1,5 +1,8 @@
 # twitthon
 
+consomme file kafka TOPIC_IN, en extrait id bio, nom et prenom, recupere 100 tweets (ou plus)
+et les medias des tweets pour les envoyer dans deux files kafka distinctes (TOPICTWEET_OUT et TOPICMEDIA_OUT)
+
 ## Prerequis
 Installation des libs nécessaires
 
@@ -12,7 +15,8 @@ Change tokens in file <twitter_credentials.txt> (get twitter tokens from https:/
 ## Usage
 
 
-    twitthon.py "<candidate>"
+    twitthon.py
+    
     
     
 ## Trick

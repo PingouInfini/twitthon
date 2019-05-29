@@ -16,15 +16,10 @@ elif debug_level == "ERROR":
 elif debug_level == "CRITICAL":
     logging.basicConfig(level=logging.CRITICAL)
 
-def usage():
-    print("Usage:")
-    print("python {} <username>".format(sys.argv[0]))
-
-
 
 if __name__ == '__main__':
     tasks = [
-        consumers.Consumer(variables.kafka_endpoint,variables.topic_in)
+        consumers.Consumer()
     ]
     #lancement du thread de consomation du topic
     for t in tasks:

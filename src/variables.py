@@ -3,11 +3,12 @@ import os
 # KAFKA
 #kafka_endpoint = str(os.environ["KAFKA_IP"]) + ":" + str(os.environ["KAFKA_PORT"])
 #topic_in = os.environ["TOPIC_IN"]
-#topic_to_colissithon = os.environ["TOPIC_TO_COLISSITHON"]
+#topictweet_out = os.environ["TOPICTWEET_OUT"]
+#topictmedia_out = os.environ["TOPICTMEDIA_OUT"]
 kafka_endpoint = "192.168.0.31:8092"
-topic_in = "tweethon_in"
-topictweet_out="topictweet_out"
-topicmedia_out="topicmedia_out"
+topic_in = "housToTwit"
+topictweet_out="tweetToColissi"
+topicmedia_out="tweetToCrousti"
 limit=10
 
 #chemin

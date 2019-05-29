@@ -4,8 +4,6 @@ import os
 import logging
 import src.producers as producers
 
-resolved_locations = {}
-
 def raw_data_generator(limit, path_to_tweets_dir, bio_id, producer, topic):
     index = 0
     for file in os.listdir(path_to_tweets_dir):

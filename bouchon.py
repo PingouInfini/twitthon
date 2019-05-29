@@ -22,10 +22,12 @@ def main():
 
         producer = KafkaProducer(bootstrap_servers='192.168.0.31:8092', value_serializer=lambda v: json.dumps(v).encode('utf-8'))
         tab=[
-            {"idBio": "12345","nom" : "bob", "prenom": "jouy" }
+            {"idBio": "12345","nom" : "bob", "prenom": "jouy" },
+            {"idBio": "456789","nom" : "michael", "prenom": "jackson" }
+
         ]
         for i in range(len(tab)):
-            producer.send('tweethon_in', value=tab[i])
+            producer.send('housToTwit', value=tab[i])
             sleep(0.5)
 
     except Exception as e:
