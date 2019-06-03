@@ -5,9 +5,12 @@ import os
 #topic_in = os.environ["TOPIC_IN"]
 #topictweet_out = os.environ["TOPICTWEET_OUT"]
 #topictmedia_out = os.environ["TOPICTMEDIA_OUT"]
+#topictweet_outdeux=os.environ["TOPICTWEET_OUTDEUX"]
+#limit= os.environ["LIMIT"]
 kafka_endpoint = "192.168.0.31:8092"
 topic_in = "housToTwit"
 topictweet_out="tweetToColissi"
+topictweet_outdeux="textToNER"
 topicmedia_out="tweetToCrousti"
 limit=10
 

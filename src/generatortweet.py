@@ -12,6 +12,7 @@ class GeneratorTweet(threading.Thread):
         threading.Thread.__init__(self)
         self.kafka_endpoint=variables.kafka_endpoint
         self.topictweet_out=variables.topictweet_out
+        self.topictweet_outdeux=variables.topictweet_outdeux
         self.outputtweet_user=variables.outputtweet_user
         self.outputtweet_keywords=variables.outputtweet_keywords
         self.limit=variables.limit
@@ -24,4 +25,6 @@ class GeneratorTweet(threading.Thread):
         tweet_directory= self.outputtweet_user+"/"+self.account
         logging.info("### Envoi des tweets vers file kafka " + self.topictweet_out)
         generators.raw_data_generator(self.limit,tweet_directory, self.idbio, producer, self.topictweet_out)
+        logging.info("### Envoi des tweets vers file kafka " + self.topictweet_outdeux)
+        generators.raw_data_generator(self.limit,tweet_directory, self.idbio, producer, self.topictweet_outdeux)
         producer.close()
