@@ -1,6 +1,7 @@
 import tweepy
 import os
 
+
 def get_api():
     # get_credentials_from_file (used for twitter connection)
     consumer_key, consumer_secret, access_key, access_secret = get_credentials_from_file()
@@ -8,7 +9,7 @@ def get_api():
 
 
 def get_credentials_from_file():
-    f = open(os.path.dirname(os.path.realpath(__file__))+"/../twitter_credentials.txt", "r")
+    f = open(os.path.dirname(os.path.realpath(__file__))+"/../../twitter_credentials.txt", "r")
 
     lines = f.readlines()
     consumer_key = str(lines[1]).replace("\n", "")

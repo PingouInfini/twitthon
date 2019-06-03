@@ -1,8 +1,8 @@
-import common.twitthon_authentication
-import common.twitthon_acquisition
+import src.common.twitthon_acquisition
+import src.common.twitthon_authentication
 
 def get_accounts_from_user(user):
-    api = common.twitthon_authentication.get_api()
+    api = src.common.twitthon_authentication.get_api()
     results = api.search_users(q=user)
 
     accounts = []
@@ -17,12 +17,12 @@ def get_user_tweet(user,
                    outputtweet = "timeline/json",
                    outputmedia = "timeline/media"):
 
-    api = common.twitthon_authentication.get_api()
-    common.twitthon_acquisition.get_user_tweet(api, user, limit, outputtweet, outputmedia)
+    api = src.common.twitthon_authentication.get_api()
+    src.common.twitthon_acquisition.get_user_tweet(api, user, limit, outputtweet, outputmedia)
 
 def get_tweet_from_keywords(keywords,
                             limit = 500,
                             outputtweet = "keywords/json",
                             outputmedia = "keywords/media"):
-    api = common.twitthon_authentication.get_api()
-    common.twitthon_acquisition.get_tweet_from_keywords(api, keywords, limit, outputtweet, outputmedia)
+    api = src.common.twitthon_authentication.get_api()
+    src.common.twitthon_acquisition.get_tweet_from_keywords(api, keywords, limit, outputtweet, outputmedia)
