@@ -9,7 +9,7 @@ def get_accounts_from_user(user):
     for result in results:
         accounts.append(result._json['screen_name'])
 
-    print("Compte(s) trouvé(s) pour '"+str(user)+"' : "+str(accounts))
+    print("Compte(s) trouve(s) pour '"+str(user)+"' : "+str(accounts))
     return accounts
 
 def get_user_tweet(user,

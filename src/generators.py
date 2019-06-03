@@ -13,7 +13,7 @@ def raw_data_generator(limit, path_to_tweets_dir, bio_id, producer, topic):
         try:
             with open(os.path.join(path_to_tweets_dir, file), encoding='utf-8') as json_file:
                 json_tweet = json.load(json_file)
-            if index <= limit:
+            if index <= int(limit):
                 producers.fill_kafka(json_tweet, bio_id, producer, topic)
             else:
                 break
@@ -27,7 +27,7 @@ def pictures_generator(limit, path_to_pictures, bio_id, producer, topic):
     for file in os.listdir(path_to_pictures):
         index += 1
         try:
-            if index <= limit:
+            if index <= int(limit):
              fname, fext = os.path.splitext(file)
              logging.info(fname)
              file_type_point = "image/" + str(fext).replace(".", "")

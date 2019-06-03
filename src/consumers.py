@@ -42,7 +42,7 @@ class Consumer(threading.Thread):
             if len(accounts) > 0:
                 # Get the first account, then get tweets
                 account = accounts[0]
-                logging.info("### Récupération des " +self.limit+" tweets du compte : "+str(account))
+                #logging.info("### Récupération des " +self.limit+" tweets du compte : "+str(account))
                 services.get_user_tweet(account,self.limit, self.outputtweet_user, self.outputmedia_user)
                 #logging.info("### Récupération des tweets mentionnant le compte : "+str(account))
                 #services.get_tweet_from_keywords(account,self.limit, self.outputtweet_keywords, self.outputmedia_keywords)

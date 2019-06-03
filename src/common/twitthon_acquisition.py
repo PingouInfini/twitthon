@@ -27,7 +27,7 @@ def get_user_tweet(api, account, limit, outputtweet, outputmedia):
         #get next 100 if exists
         while(nb_tweet_getted > 0):
 
-            if(total_tweet_getted > limit) and  limit!=0 :
+            if(total_tweet_getted > int(limit)) and  limit!=0 :
                 print("LIMITE ATTEINTE !!!")
                 break
 
@@ -54,8 +54,8 @@ def get_tweet_from_keywords(api, keywords, limit, outputtweet, outputmedia):
     if keywords != "":
         q_keywords = "\"" + keywords + "\""
 
-        while total_tweet_getted < limit:
-            count = limit - total_tweet_getted
+        while total_tweet_getted < int(limit):
+            count = int(limit) - total_tweet_getted
             try:
                 new_tweets = api.search(q=q_keywords, count=count, max_id=str(last_id - 1))
                 if not new_tweets:
