@@ -134,3 +134,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#twitthon
+keywords
+timeline
+.keywords
+.timeline
+keywords/
+timeline/
