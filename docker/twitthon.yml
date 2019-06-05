@@ -6,7 +6,7 @@ services:
     build:
       context: ./context/
     environment:
-          KAFKA_IP: 192.168.0.31
+          KAFKA_IP: "${ipkafka}"
           KAFKA_PORT: 8092
           TOPIC_IN: housToTwit
           TOPICTWEET_OUT: tweetToColissi
