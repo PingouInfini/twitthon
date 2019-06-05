@@ -22,7 +22,6 @@ def raw_data_generator(limit, path_to_tweets_dir, bio_id, producer, topic):
 
 
 def pictures_generator(limit, path_to_pictures, bio_id, producer, topic):
-    # TODO génère des pictures pour remplir la file Kafka, et return data + topic
     index = 0
     for file in os.listdir(path_to_pictures):
         index += 1

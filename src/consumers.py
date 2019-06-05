@@ -41,7 +41,7 @@ class Consumer(threading.Thread):
             accounts = services.get_accounts_from_user(user)
             if len(accounts) > 0:
                 # Get the first account, then get tweets
-                account = accounts[0]
+                account = accounts[0] # TODO: boucler sur les comptes?
                 #logging.info("### Récupération des " +self.limit+" tweets du compte : "+str(account))
                 services.get_user_tweet(account,self.limit, self.outputtweet_user, self.outputmedia_user)
                 #logging.info("### Récupération des tweets mentionnant le compte : "+str(account))
