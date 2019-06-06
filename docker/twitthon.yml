@@ -10,7 +10,7 @@ services:
           KAFKA_PORT: 8092
           TOPIC_IN: housToTwit
           TOPICTWEET_OUT: tweetToColissi
-          TOPICTMEDIA_OUT: tweetToCrousti
+          TOPICTMEDIA_OUT: mediaToColissi
           TOPICTWEET_OUTDEUX: textToNER
           OUTPUTTWEET_USER: /app/timeline/json
           OUTPUTMEDIA_USER: /app/timeline/media
