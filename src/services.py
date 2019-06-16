@@ -42,7 +42,6 @@ def get_user_tweet_and_push_forward(idbio, account, limit, kafka_endpoint, topic
             for status in page:
                 tweet = status._json
                 nb_tweet_getted += 1
-                print("tweet n°"+str(total_tweet_getted+nb_tweet_getted))
                 if (int(tweet['id_str']) < min_id):
                     min_id = int(tweet['id_str'])
 
@@ -55,7 +54,6 @@ def get_user_tweet_and_push_forward(idbio, account, limit, kafka_endpoint, topic
 
         total_tweet_getted += nb_tweet_getted
 
-        print("recup de "+str(nb_tweet_getted)+"tweets ("+str(total_media_getted)+"medias) / "+str(total_tweet_getted))
 
         # get next 100 if exists
         while (nb_tweet_getted > 0):
@@ -72,7 +70,6 @@ def get_user_tweet_and_push_forward(idbio, account, limit, kafka_endpoint, topic
                         nb_tweet_getted += 1
                         if (int(tweet['id_str']) < min_id):
                             min_id = int(tweet['id_str'])
-                        print("tweet n°"+str(total_tweet_getted+nb_tweet_getted))
                         # pousser le tweet (+ media) dans les topics:
                         producers.fill_kafka_tweet_idbio(tweet, idbio, producer, topic_tweet)
                         media = extract_media_from_tweet(tweet)
@@ -81,7 +78,6 @@ def get_user_tweet_and_push_forward(idbio, account, limit, kafka_endpoint, topic
                             producers.fill_kafka_picture_idbio(media, idbio, producer, topic_media)
             total_tweet_getted += nb_tweet_getted
 
-            print("recup de "+str(total_tweet_getted+nb_tweet_getted)+"tweets ("+str(total_media_getted)+"medias) / "+str(total_tweet_getted))
 
 
 def extract_media_from_tweet(tweet):
