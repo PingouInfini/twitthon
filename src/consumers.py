@@ -16,7 +16,7 @@ class Consumer(threading.Thread):
         self.topic_in = variables.topic_in
         self.topictweet_out = variables.topictweet_out
         self.topicmedia_out = variables.topicmedia_out
-        self.topictweet_outdeux=variables.topictweet_outdeux
+        self.topictweet_outdeux = variables.topictweet_outdeux
         self.outputtweet_user = variables.outputtweet_user
         self.outputmedia_user = variables.outputmedia_user
         self.outputtweet_keywords = variables.outputtweet_keywords
@@ -36,12 +36,15 @@ class Consumer(threading.Thread):
             nom = message.value['nom']
             prenom = message.value['prenom']
             user = prenom + " " + nom
-            accounts = services.get_accounts_from_user(user)
+            if nom == "":
+                accounts = [prenom]
+            else:
+                accounts = services.get_accounts_from_user(user)
             if len(accounts) > 0:
                 # Get the first account, then get tweets
                 account = accounts[0]  # TODO: boucler sur les comptes?
 
-                logging.info("### Récupération des " +self.limit+" tweets du compte : "+str(account))
+                logging.info("### Récupération des " + self.limit + " tweets du compte : " + str(account))
                 services.get_user_tweet_and_push_forward(idbio, account, self.limit, self.kafka_endpoint,
                                                          self.topictweet_outdeux, self.topicmedia_out)
 
@@ -50,6 +53,5 @@ class Consumer(threading.Thread):
 
                 # logging.info("### Récupération des tweets mentionnant l'utilisateur : "+str(user))
                 # services.get_tweet_from_keywords(user,self.limit, self.outputtweet_keywords, self.outputmedia_keywords)
-
 
         consumer.close()
